@@ -205,3 +205,49 @@ d6a532a Adjust formatting for safelySend
 Show history as a graph
 git log --graph
 
+
+
+
+
+
+Oddities
+========
+
+
+git status will not show submodules if they're not initialized in .gitmodules.
+
+You can use `git ls-files --stage` to get a proper view of the staging area.
+eg.
+
+(base) ➜  local git:(master) ✗ git ls-files --stage
+100644 47f5ad84fc695847fe3c821d366bfd63fed715cb 0	.gitignore
+100644 e5b7567396334dbb8ef69dd283ace635616f8095 0	README.md
+100644 8649002ba8c64adabc95e3f6aa6a3a5156fa4bff 0	btcd/btcctl.conf
+100644 0657ad10fadbcc476b5e8ec79191ef2b06ee5cf0 0	btcd/btcd.conf
+100644 4badfc5eac9c6b99bbdff3c4c103efe2b5b3cc21 0	btcd/btcwallet.conf
+100644 650214e673cfc085e63e40c1fba6dcb69850134f 0	btcd/data/simnet/peers.json
+100644 38b87c4867712ff4b5ca86834d1571e0a454db92 0	btcd/data/simnet/wallet.db
+100644 e535af11c765c6fc9d87f0b9b116a690b41418ac 0	btcd/notes.md
+100755 165bcda831db4119af345389c78de499fc4e7654 0	btcd/run.sh
+100755 5b6b6d22e2945a7e51957ba4a2cd95da63bc211c 0	btcd/wallet.sh
+160000 1fcf5c8fbcd031659c69413f666f45eb28935309 0	docker-electrumx
+100755 a23e8feacd0a3d8a909a1efd401ba4aded8cf5d8 0	electrumx/run.sh
+(base) ➜  local git:(master) ✗ git rm --cached docker-electrumx
+rm 'docker-electrumx'
+(base) ➜  local git:(master) ✗ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	deleted:    docker-electrumx
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   btcd/data/simnet/wallet.db
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	docker-compose.yml
+	docker-electrumx/
